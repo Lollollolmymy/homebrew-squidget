@@ -6,7 +6,7 @@ class Squidget < Formula
   version "1.0.0"
 
   def install
-    bin.install "squidget-universal" => "squidget"
+    bin.install "squidget-MacOs" => "squidget"
   end
 
   test do
