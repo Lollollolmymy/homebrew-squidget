@@ -6,14 +6,11 @@ class Squidget < Formula
   version "1.0.0"
 
   def install
-    # Install CLI binary
     bin.install "squidget-MacOs" => "squidget"
 
-    # Create .app bundle structure
     app_dir = prefix/"SquidGet.app"
     (app_dir/"Contents/MacOS").mkpath
 
-    # Info.plist
     (app_dir/"Contents/Info.plist").write <<~XML
       <?xml version="1.0" encoding="UTF-8"?>
       <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -30,7 +27,6 @@ class Squidget < Formula
       </plist>
     XML
 
-    # Launcher script that opens Terminal and runs squidget
     (app_dir/"Contents/MacOS/squidget-launcher").write <<~SH
       #!/bin/bash
       osascript -e 'tell application "Terminal"
@@ -39,19 +35,10 @@ class Squidget < Formula
       end tell'
     SH
     chmod 0755, app_dir/"Contents/MacOS/squidget-launcher"
-
-    # Symlink .app into /Applications
-    prefix.install_symlink app_dir => "SquidGet.app"
   end
 
-  def caveats
-    <<~EOS
-      SquidGet has been installed as both a CLI tool and a .app bundle.
-      To add it to your Applications folder, run:
-        cp -r #{prefix}/SquidGet.app /Applications/
-      Or just run it from Terminal:
-        squidget
-    EOS
+  def post_install
+    system "cp", "-r", "#{prefix}/SquidGet.app", "/Applications/"
   end
 
   test do
