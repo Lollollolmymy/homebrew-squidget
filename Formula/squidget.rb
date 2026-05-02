@@ -2,7 +2,7 @@ class Squidget < Formula
   desc "Blazing-fast TUI music downloader written in pure C"
   homepage "https://github.com/Lollollolmymy/SquidGet"
   url "https://github.com/Lollollolmymy/SquidGet/releases/download/v1.0.0/squidget-MacOs"
-  sha256 "d6969e0fac33ae2c039eb6241c20b47a33c31b8fcbeec0d7964ca63c18cd21e4"
+  sha256 "224ef7552f4d37d00f840a0862a1e7f5af6eaf68be8044804e57f869efc6f747"
   version "1.0.0"
   license "MIT"
 
